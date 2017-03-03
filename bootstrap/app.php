@@ -8,6 +8,10 @@ $app = new \Slim\App([
 
 $container = $app->getContainer();
 
+$container['db'] = function () {
+    return new PDO('mysql:host=localhost;dbname=slim', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+};
+
 $container['view'] = function ($container) {
     $view = new \Slim\Views\Twig(__DIR__ . '/../resources/views', [
         'cache' => false
